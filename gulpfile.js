@@ -24,7 +24,7 @@ async function bsTask(){
 }
 async function nodemonTask(cb) {
         return nodemon( {
-            script: './bin/www', 
+            script: './server.js', 
             ext: 'js html', 
             env: { 'NODE_ENV': 'development' }, 
             port: 3000, 
@@ -58,13 +58,13 @@ function vendors(){
 }
 
 function images(){
-    return src(['./src/images/**/**'])
+    return src(['./vendors/media/**/**'])
             .pipe(dest('dist/images/'))
 }
 
 const devBuild = series(
     clean, 
-    scripts, 
+    // scripts, 
     parallel(
         styles, 
         images
