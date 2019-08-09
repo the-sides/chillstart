@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "scss": "node-sass --watch ./scss -o ./public/css"
+    "start": "gulp run",
+    "build": "gulp devBuild"
   },
   "dependencies": {
     "express": "4.17.0",

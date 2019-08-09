@@ -5,14 +5,19 @@ body
   #container
     figure.vid
       //- p welcome
-      video
-        source(src="./images/neistat.webm")
+      video(autoplay='true', loop='true')
+        //- source(src="./images/clashes.webm")
+        //- source(src="./images/coffeeShop.webm")
+        //- source(src="./images/floating.webm")
+        //- source(src="./images/neistat.webm")
+        source(src="./images/animeRap.webm")
+        //- source(src="./images/poeticAnime.webm")
     section.links
       nav.baseMenu
         ul.categories
           li code
+          nav.subMenu
+            ul.subMenu.code
+              li sandbox
           li work
           li learn
-        nav.subMenu
-          ul.subMenu.code
-            li sandbox
