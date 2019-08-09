@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Quantico&display=swap");
+body {
+  background-color: black;
+  color: lime;
+  font-family: 'Quantico', sans-serif; }
+
+#container {
+  margin: 1em; }
+
+.baseMenu {
+  position: absolute;
+  right: 0;
+  top: 30vh;
+  min-width: 10em; }
+  .baseMenu li {
+    font-size: 3em;
+    box-shadow: 1px 1px 1px lime; }
+
+.subMenu {
+  display: flex; }
+
+.categories {
+  border: solid 2px white; }
+
+.code {
+  position: relative;
+  right: 4em;
+  border: solid 2px #52f1ff; }
+
+li {
+  list-style: none; }
