@@ -7,6 +7,7 @@ const del = require('del')
 const named = require('vinyl-named')
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer')
 
 function clean(){
     return del([
@@ -37,6 +38,7 @@ async function nodemonTask(cb) {
 function styles(){
     return src('./src/styles/**/*.scss')
             .pipe(sass().on('error', sass.logError))
+            .pipe(autoprefixer())
             .pipe(dest('dist/styles/'))
             .pipe(browserSync.stream())
 }
