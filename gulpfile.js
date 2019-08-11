@@ -61,9 +61,6 @@ function images(){
     return src(['./vendors/media/**/**'])
             .pipe(dest('dist/images/'))
 }
-// async function restart(){
-//         return browserSync.reload();
-// }
 
 const devBuild = series(
     clean, 
@@ -72,15 +69,14 @@ const devBuild = series(
         styles, 
         images
         )
-    // restart
     )
 
 async function watcher(){
     watch(['./src/styles/**/*.scss'], styles )
     watch( [ `./src/scripts/**/**`, `./views/*.pug`], ()=>{
-        console.log('change')
+        console.log('Files changed, rebuilding...')
         series(
-            dev(),
+            devBuild(),
             setTimeout(browserSync.reload,2000)
             )
 
