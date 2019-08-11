@@ -8,10 +8,23 @@ body
     section.links
       nav.baseMenu
         ul.categories
-          li code
+          li.code code
+            span.hat
+            span.flat
           nav.subMenu
             ul.subMenu.code
               li sandbox
           li play
+            svg(viewBox='0 0 400 400')
+              filter#glow(width="120%", height="120%")
+                fegaussianblur.blur(result='coloredBlur' stddeviation='2')
+                femerge
+                  femergenode(in='coloredBlur')
+                  femergenode(in='coloredBlur')
+                  femergenode(in='coloredBlur')
+                  femergenode(in='coloredBlur')
+                  femergenode(in='coloredBlur')
+                  femergenode(in='SourceGraphic')
+              path( d='M 50 150 C 200 150 250 200 400 150 C 600 100 550 200 750 150')
           li work
   script(src="scripts/client.js")

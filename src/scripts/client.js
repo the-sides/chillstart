@@ -5,9 +5,10 @@ let ticker = 0;
 
 function path(ind){
     const videoSources = [
+        'shinjiSwell_ImSorry',
         'neistat',
         'coffeeShop',
-        'floating',
+        // 'floating',
         'clashes',
         'poeticAnime',
         'animeRap'
