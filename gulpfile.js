@@ -86,4 +86,4 @@ async function watcher(){
 
 const run = series(devBuild, watcher, nodemonTask, bsTask);
 
-module.exports = {devBuild, watcher, run}
+module.exports = {devBuild, watcher, run, clean}
