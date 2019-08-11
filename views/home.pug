@@ -1,17 +1,10 @@
 head(title="chillTV")
-  link(rel='stylesheet', href='styles/fonts/stylesheet.css')
   link(rel="stylesheet", href="styles/main.css")
 body
   #container
     figure.vid
-      //- p welcome
-      video(autoplay='true', loop='true')
-        //- source(src="./images/clashes.webm")
-        //- source(src="./images/coffeeShop.webm")
-        //- source(src="./images/floating.webm")
-        //- source(src="./images/neistat.webm")
-        source(src="./images/animeRap.webm")
-        //- source(src="./images/poeticAnime.webm")
+      video#aRoll(muted='true')
+        source(src="./images/neistat.webm")
     section.links
       nav.baseMenu
         ul.categories
@@ -19,5 +12,6 @@ body
           nav.subMenu
             ul.subMenu.code
               li sandbox
+          li play
           li work
-          li learn
+  script(src="scripts/client.js")

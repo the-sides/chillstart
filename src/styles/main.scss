@@ -26,6 +26,9 @@ body{
         z-index:-1;
         min-height: 100vh;
         min-width: 100vw;
+        #src1{
+            display: none;
+        }
     }
 }
 .links{
@@ -43,14 +46,24 @@ body{
         justify-content: space-between;
     }
     .subMenu{
-        display: flex;
-
+        display: none;
+        // opacity: 0;
     }
 
     li {
         font-size: 3em;
-        border: solid 2px white;
-        // box-shadow: 1px 1px 1px lime;
+        flex: 1;
+        text-align: center;
+        background: rgba(black, 0.5);
+        &:hover,
+        &:focus{
+            background: rgba(black, 0.9);
+        }
+        &:active{
+            .subMenu{
+                display: block;
+            }
+        }
     }
 }
 
@@ -62,4 +75,7 @@ body{
 }
 li{
     list-style: none;
+}
+ul{
+    padding-left: 0;
 }
