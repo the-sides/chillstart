@@ -55,7 +55,7 @@ function scripts(){
 }
 
 function vendors(){
-        return src([])
+        return src(['node_modules/animejs/lib/anime.js'])
         .pipe(dest('dist/vendors/'))
 }
 

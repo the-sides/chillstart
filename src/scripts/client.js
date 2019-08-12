@@ -1,3 +1,4 @@
+import anime from 'animejs'
 const vid = document.querySelector('video')
 const vidSrc = vid.querySelector('source')
 const bRoll = document.querySelector('#bRoll');
@@ -45,6 +46,21 @@ function updateSrc(videoElm, sourceElm, srcPath){
 //           
 
 function run(){
+    anime({
+        targets: '#border',
+        d: [
+            { value: 'M 300 0 L 300 0 L 0 0 L 0 100 L 300 100 L 300 0' },
+            { value: 'M 800 0 L 800 0 L 0 0 L 0 100 L 300 100 L 300 0' },
+            { value: 'M 800 600 L 800 0 L 0 0 L 0 100 L 300 100 L 300 0' },
+            // { value: 'M 800 1200 L 800 0 L 0 100 L 300 100 L 300 0' },
+            // { value: 'M 800 1200 L 0 0 L 0 100 L 300 100 L 300 0' },
+            // { value: 'M 800 0 L 0 0 L 0 100 L 300 100 L 0 100' },
+        ],
+        easing: 'easeOutQuad',
+        duration: 1000,
+        loop: true,
+        direction: 'alternate'
+    });
     updateSrc(vid, vidSrc, path(ticker++))
     vid.addEventListener('ended', ()=>{
         console.log('ended')
