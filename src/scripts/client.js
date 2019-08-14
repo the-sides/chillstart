@@ -2,7 +2,8 @@ import anime from 'animejs'
 const vid = document.querySelector('video')
 const vidSrc = vid.querySelector('source')
 const bRoll = document.querySelector('#bRoll');
-const codeTab = document.querySelector('.code');
+const tabs = document.querySelectorAll('.categories > li');
+const tabBase = document.querySelector('.categories');
 let ticker = 0;
 
 function path(ind){
@@ -29,6 +30,7 @@ function updateSrc(videoElm, sourceElm, srcPath){
 function clickHandler(elm){
     console.log(elm)
     elm.classList.toggle('revealed');
+    tabBase.classList.toggle('revealed');
     anime({
         targets: '.revealded > svg > #border',
         d: [
@@ -74,5 +76,7 @@ function run(){
     })
 }
 
-codeTab.addEventListener('mouseup', (e)=>clickHandler(codeTab))
+tabs.forEach((elm)=>{
+    elm.addEventListener('mouseup', (e)=>clickHandler(elm))
+})
 document.addEventListener('DOMContentLoaded', run)
