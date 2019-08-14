@@ -20,8 +20,15 @@ async function bsTask(){
     console.log('this is bs');
     return browserSync.init({
         proxy: "localhost:3000", 
-        port: 3001
-    })
+        port: 3001,
+        open: false,  
+        }, 
+        ()=>{
+            // Don't open new window, 
+            //   but reload existing windows on reboot
+            browserSync.reload();
+        }
+    )
 }
 async function nodemonTask(cb) {
         return nodemon( {
