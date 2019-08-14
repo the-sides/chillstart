@@ -4,6 +4,7 @@ const vidSrc = vid.querySelector('source')
 const bRoll = document.querySelector('#bRoll');
 const tabs = document.querySelectorAll('.mainTabs > li');
 const tabBase = document.querySelector('.baseMenu');
+const subMenus = document.querySelectorAll('.subMenus > li > ul');
 let ticker = 0;
 
 function path(ind){
@@ -16,8 +17,9 @@ function path(ind){
         'coffeeShop',
         'shinjiSwell_ImSorry',
     ]
-    console.log(`./images/${videoSources[ind % videoSources.length]}.webm`)
-    return `./images/${videoSources[ind % videoSources.length]}.webm`
+    let rv = `./images/${videoSources[ind % videoSources.length]}.webm`
+    console.log(rv)
+    return rv;
 }
 
 function updateSrc(videoElm, sourceElm, srcPath){
@@ -37,9 +39,18 @@ function clickHandler(elm){
     }
     
     // One at a time
+    let crntTab = elm.id;
     tabs.forEach(turnOff=>turnOff.classList.remove('revealed'))
 
     // Clicked a hidden, so activate with proper submenus
+    subMenus.forEach(sub=>{
+        // console.log(sub, crntTab)
+        if(sub.classList.contains(`sub--${crntTab}`))
+            sub.classList.add('active');
+        else
+            sub.classList.remove('active');
+    })
+    tabBase.dataset.index = elm.dataset.index;
     elm.classList.add('revealed');
     tabBase.classList.add('revealed');
     anime({
@@ -68,7 +79,7 @@ function run(){
 }
 
 for(let i = 0; i < tabs.length; i++){
-    tabs[i].classList.add(`${i}`);
+    tabs[i].dataset.index = String(i);
     tabs[i].addEventListener('mouseup', (e)=>clickHandler(tabs[i]))
 }
 

@@ -14,29 +14,31 @@ body
           path(d="M 340  0 L 340 300")
           path(d="M 340  0 L 660 0")
           path(d="M 340  300 L 660 300")
-          path.playR.hidden(d="M 660  0 L 660 300")
-          path.workL.hidden(d="M 680  0 L 680 300")
+          path.codeMenu.hidden(d="M 660  0 L 660 300")
+          path.codeMenu.hidden(d="M 680  0 L 680 300")
           path(d="M 680  0 L 1000 0")
           path(d="M 680  300 L 1000 300")
           path(d="M 1000 0 L 1000 300")
         ul.subMenus
           li
-            ul.subPlay
-            ul.subWork
+            ul.sub--play
+            ul.sub--work
               li
-          li.active
-            ul.subCode
-              li 
-                a(href='https://www.codepen.io') codePen
-            ul.subWork
           li
-            ul.subPlay
-            ul.subCode
+            ul.sub--code
+              li
+                a(href='https://www.codepen.io') codePen
+            ul.sub--work
+          li
+            ul.sub--play
+            ul.sub--code
+              li
+                a(href='https://developer.mozilla.org/en-US/docs/Web') MDN
         ul.mainTabs
-          li.code 
+          li#code(tabindex="1") 
             span.label code
-          li.play 
+          li#play 
             span.label play
-          li.work
+          li#work
             span.label work
   script(src="scripts/client.js")
