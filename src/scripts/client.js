@@ -1,17 +1,19 @@
+import anime from 'animejs'
 const vid = document.querySelector('video')
 const vidSrc = vid.querySelector('source')
 const bRoll = document.querySelector('#bRoll');
+const codeTab = document.querySelector('.code');
 let ticker = 0;
 
 function path(ind){
+    // 'floating',
+    // 'clashes',
     const videoSources = [
-        'shinjiSwell_ImSorry',
+        'poeticAnime',
+        'animeRap',
         'neistat',
         'coffeeShop',
-        // 'floating',
-        'clashes',
-        'poeticAnime',
-        'animeRap'
+        'shinjiSwell_ImSorry',
     ]
     console.log(`./images/${videoSources[ind % videoSources.length]}.webm`)
     return `./images/${videoSources[ind % videoSources.length]}.webm`
@@ -22,6 +24,26 @@ function updateSrc(videoElm, sourceElm, srcPath){
     videoElm.load();
     videoElm.play();
 
+}
+
+function clickHandler(elm){
+    console.log(elm)
+    elm.classList.toggle('revealed');
+    anime({
+        targets: '.revealded > svg > #border',
+        d: [
+            { value: 'M 300 0 L 300 0 L 0 0 L 0 100 L 300 100 L 300 0' },
+            { value: 'M 800 0 L 800 0 L 0 0 L 0 100 L 300 100 L 300 0' },
+            { value: 'M 800 600 L 800 0 L 0 0 L 0 100 L 300 100 L 300 0' },
+            // { value: 'M 800 1200 L 800 0 L 0 100 L 300 100 L 300 0' },
+            // { value: 'M 800 1200 L 0 0 L 0 100 L 300 100 L 300 0' },
+            // { value: 'M 800 0 L 0 0 L 0 100 L 300 100 L 0 100' },
+        ],
+        easing: 'easeOutQuad',
+        duration: 1000,
+        loop: true,
+        direction: 'alternate'
+    });
 }
 
 //                                                                      
@@ -52,4 +74,5 @@ function run(){
     })
 }
 
+codeTab.addEventListener('mouseup', (e)=>clickHandler(codeTab))
 document.addEventListener('DOMContentLoaded', run)

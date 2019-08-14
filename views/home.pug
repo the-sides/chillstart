@@ -8,23 +8,16 @@ body
     section.links
       nav.baseMenu
         ul.categories
-          li.code code
-            span.hat
-            span.flat
+          li.code 
+            span.label code
+            svg(preserveAspectRatio="none"  viewBox='0 0 300 100' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink')
+              //- g#Page-1(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' fill-opacity='0.5')
+              //-   g#Desktop-HD( fill='#000000' stroke='#979797')
+              path#border(d="M 300 0 L 300 0 L 0 0 L 0 100 L 300 100 L 300 0") //- span.hat
+            //- span.flat
           nav.subMenu
             ul.subMenu.code
               li sandbox
           li play
-            svg(viewBox='0 0 400 400')
-              filter#glow(width="120%", height="120%")
-                fegaussianblur.blur(result='coloredBlur' stddeviation='2')
-                femerge
-                  femergenode(in='coloredBlur')
-                  femergenode(in='coloredBlur')
-                  femergenode(in='coloredBlur')
-                  femergenode(in='coloredBlur')
-                  femergenode(in='coloredBlur')
-                  femergenode(in='SourceGraphic')
-              path( d='M 50 150 C 200 150 250 200 400 150 C 600 100 550 200 750 150')
           li work
   script(src="scripts/client.js")
