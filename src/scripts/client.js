@@ -2,7 +2,7 @@ import anime from 'animejs'
 const vid = document.querySelector('video')
 const vidSrc = vid.querySelector('source')
 const bRoll = document.querySelector('#bRoll');
-const tabs = document.querySelectorAll('.categories > li');
+const tabs = document.querySelectorAll('.mainTabs > li');
 const tabBase = document.querySelector('.baseMenu');
 let ticker = 0;
 
@@ -31,6 +31,7 @@ function clickHandler(elm){
     console.log(elm)
     if(elm.classList.contains('revealed')){
         tabBase.classList.remove('revealed');
+        console.log(elm.classList)
         elm.classList.remove('revealed');
         return false;
     }
@@ -58,26 +59,6 @@ function clickHandler(elm){
     });
 }
 
-//                                                                      
-//                                              iiii                    
-//                                             i::::i                   
-//                                              iiii                    
-//                                                                      
-//     mmmmmmm    mmmmmmm     aaaaaaaaaaaaa   iiiiiii nnnn  nnnnnnnn    
-//   mm:::::::m  m:::::::mm   a::::::::::::a  i:::::i n:::nn::::::::nn  
-//  m::::::::::mm::::::::::m  aaaaaaaaa:::::a  i::::i n::::::::::::::nn 
-//  m::::::::::::::::::::::m           a::::a  i::::i nn:::::::::::::::n
-//  m:::::mmm::::::mmm:::::m    aaaaaaa:::::a  i::::i   n:::::nnnn:::::n
-//  m::::m   m::::m   m::::m  aa::::::::::::a  i::::i   n::::n    n::::n
-//  m::::m   m::::m   m::::m a::::aaaa::::::a  i::::i   n::::n    n::::n
-//  m::::m   m::::m   m::::ma::::a    a:::::a  i::::i   n::::n    n::::n
-//  m::::m   m::::m   m::::ma::::a    a:::::a i::::::i  n::::n    n::::n
-//  m::::m   m::::m   m::::ma:::::aaaa::::::a i::::::i  n::::n    n::::n
-//  m::::m   m::::m   m::::m a::::::::::aa:::ai::::::i  n::::n    n::::n
-//  mmmmmm   mmmmmm   mmmmmm  aaaaaaaaaa  aaaaiiiiiiii  nnnnnn    nnnnnn
-//                                                                      
-//           
-
 function run(){
     updateSrc(vid, vidSrc, path(ticker++))
     vid.addEventListener('ended', ()=>{
@@ -86,7 +67,9 @@ function run(){
     })
 }
 
-tabs.forEach((elm)=>{
-    elm.addEventListener('mouseup', (e)=>clickHandler(elm))
-})
+for(let i = 0; i < tabs.length; i++){
+    tabs[i].classList.add(`${i}`);
+    tabs[i].addEventListener('mouseup', (e)=>clickHandler(tabs[i]))
+}
+
 document.addEventListener('DOMContentLoaded', run)

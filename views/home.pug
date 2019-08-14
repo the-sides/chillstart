@@ -13,17 +13,30 @@ body
           path(d="M 320  0 L 320 300")
           path(d="M 340  0 L 340 300")
           path(d="M 340  0 L 660 0")
-          path(d="M 660  0 L 660 300")
-          path(d="M 680  0 L 680 300")
+          path(d="M 340  300 L 660 300")
+          path.playR.hidden(d="M 660  0 L 660 300")
+          path.workL.hidden(d="M 680  0 L 680 300")
           path(d="M 680  0 L 1000 0")
           path(d="M 680  300 L 1000 300")
           path(d="M 1000 0 L 1000 300")
-        ul.categories
+        ul.subMenus
+          li
+            ul.subPlay
+            ul.subWork
+              li
+          li.active
+            ul.subCode
+              li 
+                a(href='https://www.codepen.io') codePen
+            ul.subWork
+          li
+            ul.subPlay
+            ul.subCode
+        ul.mainTabs
           li.code 
             span.label code
-            nav.subMenu
-              ul.subMenu.code
-                li sandbox
-          li play
-          li work
+          li.play 
+            span.label play
+          li.work
+            span.label work
   script(src="scripts/client.js")
