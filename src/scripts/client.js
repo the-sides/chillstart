@@ -29,8 +29,14 @@ function updateSrc(videoElm, sourceElm, srcPath){
 
 function clickHandler(elm){
     console.log(elm)
-    elm.classList.toggle('revealed');
-    tabBase.classList.toggle('revealed');
+    if(elm.classList.contains('revealed')){
+        tabBase.classList.remove('revealed');
+        elm.classList.remove('revealed');
+        return false;
+    }
+    tabs.forEach(turnOff=>turnOff.classList.remove('revealed'))
+    elm.classList.add('revealed');
+    tabBase.classList.add('revealed');
     anime({
         targets: '.revealded > svg > #border',
         d: [
