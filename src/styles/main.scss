@@ -54,6 +54,9 @@ body{
 
     li {
         margin-top: auto;
+        margin-left: 1.5vw;
+        margin-right: 1.5vw;
+        max-width: 30vw;
         position: relative;
         bottom: 0;
         font-size: 3em;
@@ -64,6 +67,7 @@ body{
         // max-width: 300px;
         transform: translateY(0);
         transition: all .1s ease-out;
+        z-index: 2;
 
         span.beam{
             position: absolute;
@@ -75,7 +79,7 @@ body{
             height: 1px;
             width: 100%;
             transform: translateX(-50%);
-            z-index: 2;
+            z-index: 0;
         }
         svg{
             overflow: visible;
@@ -98,12 +102,14 @@ body{
             top: 0px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
+            z-index: -1;
         }
         &.revealed{
-            transform: translateY(-50vh);
+            // transform: translateY(-50vh);
+            padding-bottom: 40vh;
         }
         &:hover,
+        &:active,
         &:focus{
             background: rgba(black, 0.9);
         }
