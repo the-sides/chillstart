@@ -3,7 +3,7 @@ const vid = document.querySelector('video')
 const vidSrc = vid.querySelector('source')
 const bRoll = document.querySelector('#bRoll');
 const tabs = document.querySelectorAll('.categories > li');
-const tabBase = document.querySelector('.categories');
+const tabBase = document.querySelector('.baseMenu');
 let ticker = 0;
 
 function path(ind){
@@ -34,7 +34,11 @@ function clickHandler(elm){
         elm.classList.remove('revealed');
         return false;
     }
+    
+    // One at a time
     tabs.forEach(turnOff=>turnOff.classList.remove('revealed'))
+
+    // Clicked a hidden, so activate with proper submenus
     elm.classList.add('revealed');
     tabBase.classList.add('revealed');
     anime({
