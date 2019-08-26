@@ -117,7 +117,21 @@ body{
         overflow-y: hidden;
         margin: 0;
 
+        // BUTTONS
         > li {
+            user-select: none;
+            outline: 0;
+            &::after{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                z-index: -5;
+                opacity: 0.5;
+                background: url('https://s9.limitedrun.com/images/1335629/125t0zl.jpg.gif');
+            }
             // margin-top: auto;
             max-width: 32%;
             position: relative;
@@ -125,7 +139,7 @@ body{
             font-size: 3em;
             flex: 1;
             text-align: center;
-            background: rgba(black, 0.5);
+            // background-color: rgba(black, 0.5);
             height: 100%;
             // max-width: 300px;
             transform: translateY(0);
