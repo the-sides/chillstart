@@ -7,6 +7,7 @@ const del = require('del')
 const named = require('vinyl-named')
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
+const pug = require('gulp-pug');
 const autoprefixer = require('gulp-autoprefixer')
 
 function clean(){
@@ -66,6 +67,12 @@ function vendors(){
         .pipe(dest('dist/vendors/'))
 }
 
+function views(){
+    return src(['./views/home.pug'])
+    .pipe(pug({pretty:true}))
+    .pipe(dest('dist/html'))
+}
+
 function images(){
     return src(['./vendors/media/**/**'])
             .pipe(dest('dist/images/'))
@@ -95,4 +102,4 @@ async function watcher(){
 
 const run = series(devBuild, watcher, nodemonTask, bsTask);
 
-module.exports = {devBuild, watcher, run, clean}
+module.exports = {devBuild, views, watcher, run, clean}
