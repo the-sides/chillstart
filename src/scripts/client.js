@@ -53,8 +53,8 @@ function clickHandler(elm){
     tabBase.dataset.index = elm.dataset.index;
     elm.classList.add('revealed');
     tabBase.classList.add('revealed');
-    anime({
-        targets: '.revealded > svg > #border',
+    if(false){anime({
+        targets: '.revealed > svg > #border',
         d: [
             { value: 'M 300 0 L 300 0 L 0 0 L 0 100 L 300 100 L 300 0' },
             { value: 'M 800 0 L 800 0 L 0 0 L 0 100 L 300 100 L 300 0' },
@@ -67,20 +67,25 @@ function clickHandler(elm){
         duration: 1000,
         loop: true,
         direction: 'alternate'
-    });
+    });}
 }
 
 function run(){
+    // Start with the Code tab expanded
+    setTimeout(
+        ()=>clickHandler(tabs[0]), 500)
+
     updateSrc(vid, vidSrc, path(ticker++))
     vid.addEventListener('ended', ()=>{
         console.log('ended')
         updateSrc(vid, vidSrc, path(ticker++))
     })
+
+    for(let i = 0; i < tabs.length; i++){
+        tabs[i].dataset.index = String(i);
+        tabs[i].addEventListener('mouseup', (e)=>clickHandler(tabs[i]))
+    }
 }
 
-for(let i = 0; i < tabs.length; i++){
-    tabs[i].dataset.index = String(i);
-    tabs[i].addEventListener('mouseup', (e)=>clickHandler(tabs[i]))
-}
 
 document.addEventListener('DOMContentLoaded', run)

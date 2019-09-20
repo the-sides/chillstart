@@ -66,6 +66,7 @@ body{
     &:active,
     &.revealed{
         .backBeams{
+            height: 67vh;
             animation: reveal 1s .3s linear forwards;
         }
         .subMenus > li > ul.active {
@@ -84,7 +85,7 @@ body{
             flex: 1;
             max-width: 32%;
             transition: all .3s ease-in;
-            ul{
+            ul {
                 opacity: 0;
                 width: 90%;
                 margin: 5% 5%;
@@ -100,11 +101,11 @@ body{
                         min-width: 90%;
                         text-decoration: none;
                         color: lime;
+                        &:hover{
+                            text-decoration: underline;
+                        }
                     }
                 }
-                // padding: 0;
-                // > li{
-                // }
             }
         }
     }
@@ -153,7 +154,7 @@ body{
             }
             &.revealed{
                 // transform: translateY(-50vh);
-                padding-bottom: 40vh;
+                padding-bottom: 70vh;
             }
             &.play{
                 .subMenu{
