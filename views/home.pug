@@ -7,19 +7,9 @@ body
         source(src="./images/neistat.webm")
     section.links
       nav.baseMenu
-        svg.backBeams(viewBox='0 0 1000 300' preserveAspectRatio="none")
-          path(d="M 0    0 L 0   300")
-          path(d="M 0    0 L 320 0")
-          path(d="M 320  0 L 320 300")
-          path(d="M 340  0 L 340 300")
-          path(d="M 340  0 L 660 0")
-          path(d="M 340  300 L 660 300")
-          path.codeMenu.hidden(d="M 660  0 L 660 300")
-          path.codeMenu.hidden(d="M 680  0 L 680 300")
-          path(d="M 680  0 L 1000 0")
-          path(d="M 680  300 L 1000 300")
-          path(d="M 1000 0 L 1000 300")
         ul.subMenus
+          svg.backBeams(viewBox='0 0 100 100' preserveAspectRatio="none")
+            path(d="M 0 0 L 0 100 L 100 100 L 0 100 Z")
           li
             ul.sub--play
             ul.sub--work
