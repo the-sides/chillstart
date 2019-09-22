@@ -85,7 +85,10 @@ body{
             flex: 1;
             max-width: 32%;
             transition: all .3s ease-in;
+            position: relative;
             ul {
+                position: absolute;
+                top: 0.3em;
                 opacity: 0;
                 width: 90%;
                 margin: 5% 5%;
@@ -94,7 +97,7 @@ body{
                 transition: all 0.5s 0.3s ease-in;
                 > li {
                     // background: rgba(black, 0.5);
-                    padding: .3em;
+                    padding: 0 .3em;
                     text-align: center;
                     > a {
                         display: block;
