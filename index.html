@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>chillTV</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quantico&display=swap">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+    html{
+        box-sizing: border-box;
+    }
+
+    body{
+        background-color: black;
+        color: lime;
+        font-family: 'Quantico', sans-serif;
+        overflow: hidden;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+
+    #container{
+        overflow: hidden;
+    }
+    .links{
+        width: 100%;
+    }
+    .baseMenu{
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 96vw;
+        margin: 1em auto;
+        overflow: hidden;
+    }
+    .baseMenu .backBeams{
+        margin: 0 auto;
+        width: 100%;
+        height: 38vh;
+    }
+    @keyframes reveal {
+        0%{
+            stroke-dashoffset: 1000;
+        }
+
+        100%{
+            stroke-dashoffset: 500;
+        }
+    }
+    .baseMenu:active .backBeams,
+    .baseMenu.revealed .backBeams{
+        height: 67vh;
+        animation: reveal 1s .3s linear forwards;
+    }
+    .baseMenu.revealed .subMenus > li > ul.active {
+        opacity: 1;
+    }
+    .baseMenu .subMenus{
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 ;
+        z-index: 2;
+    }
+    .baseMenu .subMenus > li {
+        flex: 1;
+        max-width: 32%;
+        transition: all .3s ease-in;
+        position: relative;
+    }
+    .baseMenu .subMenus > li > ul {
+        position: absolute;
+        top: 0.3em;
+        opacity: 0;
+        width: 90%;
+        margin: 5% 5%;
+        padding: 0%;
+        background: rgba(0,0,0, 0.5);
+        transition: all 0.5s 0.3s ease-in;
+    }
+    .baseMenu .subMenus > li > ul > li {
+        padding: 0 .3em;
+        text-align: center;
+    }
+    .baseMenu .subMenus > li > ul > li > a {
+        display: block;
+        min-width: 90%;
+        text-decoration: none;
+        color: lime;
+    }
+    .baseMenu .subMenus > li > ul > li > a:hover{
+        text-decoration: underline;
+    }
+    .baseMenu .mainTabs{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        align-items: flex-end;
+        width: 100%;
+        overflow-y: hidden;
+        margin: 0;
+    }
+    .baseMenu .mainTabs > li {
+        user-select: none;
+        outline: 0;
+        position: relative;
+    }
+    .baseMenu .mainTabs > li::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -5;
+        opacity: 0.5;
+        background: url('https://s9.limitedrun.com/images/1335629/125t0zl.jpg.gif');
+    }
+    .baseMenu .mainTabs > li {
+        max-width: 32%;
+        position: relative;
+        bottom: 0;
+        font-size: 3em;
+        flex: 1;
+        text-align: center;
+        height: 100%;
+        transform: translateY(0);
+        transition: all .3s ease-out;
+        z-index: 2;
+        border: 1px solid cyan;
+    }
+    .baseMenu .mainTabs > li span{
+        margin: 0 auto;
+        min-width: 100%;
+        height: 100%;
+    }
+    .baseMenu .mainTabs > li.revealed{
+        padding-bottom: 70vh;
+    }
+    .baseMenu .mainTabs > li.play .subMenu{
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transform: translateY(-40vh);
+        z-index: 3;
+    }
+    .baseMenu .mainTabs > li.play .subMenu ul li{
+        font-size: 0.7em;
+        min-width: 100%;
+    }
+    .baseMenu .mainTabs > li:hover,
+    .baseMenu .mainTabs > li:active,
+    .baseMenu .mainTabs > li:focus{
+        background: rgba(0,0,0, 0.9);
+    }
+
+    .baseMenu svg {
+        overflow: visible;
+        position: absolute;
+        width: 100%;
+        stroke-width: 1px;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+    }
+    .baseMenu svg rect, 
+    .baseMenu svg path{
+        filter: drop-shadow(0px 0px 2px cyan);
+        fill: transparent;
+        stroke: cyan;
+        min-width: 100%;
+        height: auto;
+    }
+    .baseMenu svg path.hidden{
+        stroke: transparent;
+    }
+    .baseMenu svg {
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+    }
+
+    #container video{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index:-1;
+        min-height: 100vh;
+        min-width: 100vw;
+    }
+
+    li{
+        list-style: none;
+    }
+    ul{
+        padding-left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <figure class="vid">
+      <video id="aRoll" muted="true" autoplay playsinline>
+        <source src="./images/neistat.webm">
+      </video>
+    </figure>
+    <section class="links">
+      <nav class="baseMenu">
+        <svg class="backBeams" viewBox="0 0 1000 300" preserveAspectRatio="none">
+          <path d="M 0    0 L 0   300"></path>
+          <path d="M 0    0 L 320 0"></path>
+          <path d="M 320  0 L 320 300"></path>
+          <path d="M 340  0 L 340 300"></path>
+          <path d="M 340  0 L 660 0"></path>
+          <path d="M 340  300 L 660 300"></path>
+          <path class="codeMenu hidden" d="M 660  0 L 660 300"></path>
+          <path class="codeMenu hidden" d="M 680  0 L 680 300"></path>
+          <path d="M 680  0 L 1000 0"></path>
+          <path d="M 680  300 L 1000 300"></path>
+          <path d="M 1000 0 L 1000 300"></path>
+        </svg>
+        <ul class="subMenus">
+          <li>
+            <ul class="sub--play"></ul>
+            <ul class="sub--work"></ul>
+          </li>
+          <li>
+            <ul class="sub--code">
+              <li>
+                <a href='https://github.com/the-sides'>GitHub</a>
+              </li>
+              <li>
+                <a href='https://www.codepen.io'>codePen</a>
+              </li>
+              <li>
+                <a href='https://codesandbox.io/dashboard/recent'>CodeSandbox</a>
+              </li>
+              <li>
+                <a href='https://www.hackthebox.eu/home'>HackTheBox</a>
+              </li>
+            </ul>
+            <ul class="sub--work">
+              <li>
+                <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">Gmail</a>
+              </li>
+              <li>
+                <a href="https://utk.instructure.com/" target="_blank">Canvas</a>
+              </li>
+              <li>
+                <a href="https://utk.instructure.com/" target="_blank">MyUtk</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <ul class="sub--play"></ul>
+            <ul class="sub--code">
+              <li>
+                <a href='https://messenger.klinkerapps.com/'>Pulse</a>
+              </li>
+              <li>
+                <a href='https://reddit.com/'>Reddit</a>
+              </li>
+              <li>
+                <a href='https://youtube.com/'>YouTube</a>
+              </li>
+              <li>
+                <a href='https://netflix.com/'>Netflix</a>
+              </li>
+              <li>
+                <a href='https://hulu.com/'>Hulu</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="mainTabs">
+          <li id="code" tabindex="1"> 
+            <span class="label">code</span>
+          </li>
+          <li id="play"> 
+            <span class="label">play</span>
+          </li>
+          <li id="work">
+            <span class="label">work</span>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script>
+    const vid = document.querySelector('video');
+    const vidSrc = vid.querySelector('source');
+    const bRoll = document.querySelector('#bRoll');
+    const tabs = document.querySelectorAll('.mainTabs > li');
+    const tabBase = document.querySelector('.baseMenu');
+    const subMenus = document.querySelectorAll('.subMenus > li > ul');
+    let ticker = 0;
+
+    function path(ind){
+        const videoSources = [
+            'poeticAnime',
+            'animeRap',
+            'neistat',
+            'coffeeShop',
+            'shinjiSwell_ImSorry',
+        ]
+        let rv = `./images/${videoSources[ind % videoSources.length]}.webm`
+        console.log(rv);
+        return rv;
+    }
+
+    function updateSrc(videoElm, sourceElm, srcPath){
+        sourceElm.setAttribute('src', srcPath);
+        videoElm.load();
+        videoElm.play();
+    }
+
+    function clickHandler(elm){
+        console.log(elm)
+        if(elm.classList.contains('revealed')){
+            tabBase.classList.remove('revealed');
+            console.log(elm.classList)
+            elm.classList.remove('revealed');
+            return false;
+        }
+        
+        let crntTab = elm.id;
+        tabs.forEach(turnOff=>turnOff.classList.remove('revealed'))
+
+        subMenus.forEach(sub=>{
+            if(sub.classList.contains(`sub--${crntTab}`))
+                sub.classList.add('active');
+            else
+                sub.classList.remove('active');
+        })
+        tabBase.dataset.index = elm.dataset.index;
+        elm.classList.add('revealed');
+        tabBase.classList.add('revealed');
+    }
+
+    function run(){
+        setTimeout(
+            ()=>clickHandler(tabs[0]), 500)
+
+        updateSrc(vid, vidSrc, path(ticker++))
+        vid.addEventListener('ended', ()=>{
+            console.log('ended')
+            updateSrc(vid, vidSrc, path(ticker++))
+        })
+
+        for(let i = 0; i < tabs.length; i++){
+            tabs[i].dataset.index = String(i);
+            tabs[i].addEventListener('mouseup', (e)=>clickHandler(tabs[i]))
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', run)
+  </script>
+</body>
+</html>
